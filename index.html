@@ -1,106 +1,137 @@
+HTML
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Quote Solutions - Showcase</title>
-    <link rel="stylesheet" as="style" crossorigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <title>WM 솔루션 | 전시장</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
         :root {
-            --bg: #050505; --card: #111111; --accent: #00ff88;
-            --text: #ffffff; --text-sub: #888888;
+            --bg: #000000;
+            --accent: #00ffcc;
+            --card-bg: #0a0a0a;
+            --gradient: linear-gradient(45deg, #00ffcc, #33ccff, #9d50bb);
+            --text-desc: #ffffff; /* 안 보이던 회색을 완전한 흰색으로 변경 */
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: "Pretendard", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        body {
+            background-color: var(--bg); color: white;
+            font-family: "Pretendard", sans-serif; margin: 0;
+            overflow-x: hidden; word-break: keep-all;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 20px; }
         
-        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
-        
-        header { text-align: center; margin-bottom: 80px; }
-        header h1 { font-size: 50px; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; }
-        header p { color: var(--accent); font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        header { text-align: center; margin-bottom: 100px; }
+        header h1 { 
+            font-size: 4rem; font-weight: 900; margin: 0;
+            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        header p { color: #ffd1d1; letter-spacing: 5px; margin-top: 10px; font-weight: 700; }
 
-        /* [GALLERY GRID] */
-        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .project-card {
-            background: var(--card); border: 1px solid #222; border-radius: 30px;
-            padding: 40px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-decoration: none; color: inherit; display: flex; flex-direction: column;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* [디자인 유지] 아까 그 그라디언트 테두리 & 호버 효과 */
+        .style-card {
+            background: var(--card-bg); border: 1px solid #1a1a1a; border-radius: 24px;
+            padding: 40px 30px; text-decoration: none; color: inherit;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .project-card:hover { 
-            transform: translateY(-15px); border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
-        }
-        .project-card::after {
-            content: "TRY DEMO →"; position: absolute; bottom: 20px; right: 30px;
-            font-weight: 800; color: var(--accent); font-size: 14px; opacity: 0; transition: 0.3s;
-        }
-        .project-card:hover::after { opacity: 1; transform: translateX(-10px); }
 
-        .category { font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 15px; }
-        .title { font-size: 26px; font-weight: 800; margin-bottom: 15px; }
-        .desc { color: var(--text-sub); font-size: 16px; margin-bottom: 30px; }
+        /* 호버 시 나타나는 상단 라인 */
+        .style-card::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--gradient); opacity: 0; transition: 0.3s;
+        }
 
-        /* [BANNER SECTION] */
-        .custom-banner {
-            margin-top: 100px; padding: 60px; border-radius: 40px;
-            background: linear-gradient(135deg, #111 0%, #000 100%);
-            border: 1px dashed #444; text-align: center;
+        .style-card:hover {
+            transform: translateY(-15px); border-color: #333;
+            box-shadow: 0 20px 40px rgba(0, 255, 204, 0.15);
         }
-        .custom-banner h2 { font-size: 32px; margin-bottom: 20px; }
-        .btn-contact {
-            display: inline-block; padding: 20px 50px; background: var(--accent);
-            color: #000; text-decoration: none; border-radius: 100px;
-            font-weight: 900; font-size: 18px; transition: 0.3s;
-        }
-        .btn-contact:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 136, 0.4); }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 36px; }
-            .custom-banner { padding: 40px 20px; }
+        .style-card:hover::before { opacity: 1; }
+
+        .card-num { font-size: 0.8rem; color: var(--accent); font-weight: 900; margin-bottom: 20px; opacity: 0.7; }
+        .card-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; color: #fff; }
+        
+        /* [보정] 설명 글씨를 아주 잘 보이게 흰색으로 */
+        .card-desc { color: var(--text-desc); font-size: 1rem; line-height: 1.6; font-weight: 400; opacity: 0.9; }
+
+        .go-btn {
+            margin-top: 30px; color: var(--accent); font-weight: 700; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 10px; opacity: 0; transition: 0.3s;
         }
+        .style-card:hover .go-btn { opacity: 1; transform: translateX(10px); }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <p>Expert in Automated Quote Systems</p>
-        <h1>솔루션 쇼룸</h1>
-        <p style="color:#555; text-transform: none; margin-top:10px;">상담 시간을 90% 단축시키는 업종별 실시간 견적 엔진</p>
+        <h1>자동견적비서 디자인 아카이브</h1>
+        <p>WM 솔루션 프리미엄 전시관</p>
     </header>
 
-    <div class="showcase-grid">
-        <a href="https://대표님아이디.github.io/logo-calc" class="project-card">
-            <span class="category">BRANDING</span>
-            <div class="title">로고 디자인 견적 엔진</div>
-            <div class="desc">복잡한 시안 개수, 저작권 옵션, 급행 할증을 한 번에 계산하고 신청까지 완료합니다.</div>
-        </a>
-
-        <a href="https://대표님아이디.github.io/copy-calc" class="project-card">
-            <span class="category">CONTENTS</span>
-            <div class="title">제품 카피라이팅 엔진</div>
-            <div class="desc">분량 위주가 아닌 소구점 분석, 타겟 리서치 등 전략 비용을 체계적으로 산출합니다.</div>
-        </a>
-
-        <a href="https://대표님아이디.github.io/product-calc" class="project-card">
-            <span class="category">MANUFACTURING</span>
-            <div class="title">시제품 제작 견적 엔진</div>
-            <div class="desc">재료, 부피, 수량별 할인 로직(Scale of Economy)이 적용된 고도화된 계산기입니다.</div>
-        </a>
-    </div>
-
-    <div class="custom-banner">
-        <p style="color:var(--accent); margin-bottom:10px;">원하는 로직이 없으신가요?</p>
-        <h2>"대표님 비즈니스에 딱 맞는<br>맞춤형 엔진을 설계해 드립니다."</h2>
-        <p style="color:var(--text-sub); margin-bottom:30px;">엑셀 수식만 주시면 웹사이트로 구현해 드립니다. 인건비 90%를 아끼세요.</p>
-        <a href="https://open.kakao.com/대표님톡" class="btn-contact">1:1 맞춤 제작 문의하기</a>
-    </div>
+    <div class="gallery-grid" id="grid">
+        </div>
 </div>
 
 <script>
-    // 간단한 마우스 효과 등 추가 가능
+    const repoData = [
+        { id: "glowocean", title: "글로우 오션", desc: "밤바다의 빛나는 윤슬을 닮은 몽환적 그라디언트" },
+        { id: "navyocean", title: "네이비 오션", desc: "깊은 바다의 신뢰감을 담은 묵직한 다크 비즈니스" },
+        { id: "invisibleapp", title: "인비저블 앱", desc: "불필요한 요소를 모두 제거한 극강의 미니멀리즘" },
+        { id: "isometric", title: "입체 아이소메트릭", desc: "공간감을 극대화하여 전문성과 입체감을 강조한 스타일" },
+        { id: "typofocus", title: "타이포 포커스", desc: "강렬한 서체 배열로 메시지 전달력을 높인 디자인" },
+        { id: "minimalsmooth", title: "미니멀 스무스", desc: "부드러운 곡선과 여백이 돋보이는 깔끔한 레이아웃" },
+        { id: "bordergrad", title: "보더 그라디언트", "desc": "세련된 테두리 라인에 포인트를 준 트렌디 스타일" },
+        { id: "frostsilver", title: "프로스트 실버", "desc": "도시적이고 고급스러운 느낌의 금속성 디자인" },
+        { id: "techaurora", title: "테크 오로라", "desc": "IT 및 기술 기반 기업에 최적화된 사이버틱 감성" },
+        { id: "microinteract", title: "마이크로 인터랙트", "desc": "섬세한 움직임으로 사용자의 시선을 끄는 스타일" },
+        { id: "nobleblack", title: "노블 블랙", "desc": "프리미엄의 정점을 상징하는 깊이 있는 블랙 에디션" },
+        { id: "pastelgrad", title: "파스텔 그라데이션", "desc": "따뜻하고 부드러운 색감으로 친근감을 주는 디자인" },
+        { id: "instasocial", title: "인스타 소셜", "desc": "MZ세대를 겨냥한 감각적이고 화려한 SNS 스타일" },
+        { id: "chatbot", title: "챗봇 인터페이스", "desc": "직관적이고 친절한 대화형 구성의 UI 디자인" },
+        { id: "paperanalog", title: "페이퍼 아날로그", "desc": "종이의 질감과 아날로그 감성을 결합한 따뜻한 느낌" },
+        { id: "corporate", title: "기업 표준형", "desc": "가장 안정적이고 신뢰도 높은 정석 비즈니스 스타일" },
+        { id: "minimono", title: "미니 모노", "desc": "흑백의 절제된 미학으로 본질에 집중하는 디자인" },
+        { id: "daymorph", title: "데이 모피즘", "desc": "입체적인 버튼과 그림자가 살아있는 최신 UI 트렌드" },
+        { id: "handsketch", title: "핸드 스케치", "desc": "직접 그린 듯한 정성이 느껴지는 유니크한 감성" },
+        { id: "auroragrad", title: "오로라 그라드", "desc": "다채로운 색감이 파도처럼 넘실거리는 화려한 구성" },
+        { id: "neobrutal", title: "네오 브루탈", "desc": "강렬한 대비와 굵은 선으로 압도적인 존재감을 주는 스타일" },
+        { id: "bentogrid", title: "벤토 그리드", "desc": "애플 스타일의 깔끔한 박스 구조로 정보를 전달" },
+        { id: "darkmode", title: "퓨어 다크모드", "desc": "눈이 편안하면서도 세련된 고대비 블랙 디자인" },
+        { id: "morphism", title: "글래스 모피즘", "desc": "투명한 유리 조각이 겹쳐진 듯한 몽환적 스타일" },
+        { id: "basic", title: "클래식 베이직", "desc": "유행을 타지 않는 명확하고 깔끔한 기본 디자인" },
+        { id: "retropixel", title: "레트로 픽셀", "desc": "8비트 게임의 향수를 담은 빈티지 도트 디자인" },
+        { id: "megazine", title: "매거진 레이아웃", "desc": "잡지 화보를 보는 듯한 세련된 배치와 구성" },
+        { id: "claymorph", title: "클레이 모피즘", "desc": "찰흙처럼 폭신한 입체감이 느껴지는 귀여운 스타일" },
+        { id: "futuremono", title: "퓨처 모노", "desc": "미래 지향적 폰트와 절제된 색채의 조화" },
+        { id: "luxurygold", title: "럭셔리 골드", "desc": "성공의 가치를 더해주는 명품 골드 포인트 디자인" }
+    ];
+
+    const grid = document.getElementById('grid');
+
+    repoData.forEach((item, index) => {
+        const card = document.createElement('a');
+        card.href = `https://workmate-solution.github.io/${item.id}/`;
+        card.className = 'style-card';
+        card.innerHTML = `
+            <div>
+                <div class="card-num">스타일 ${String(index + 1).padStart(2, '0')}</div>
+                <div class="card-title">${item.title}</div>
+                <div class="card-desc">${item.desc}</div>
+            </div>
+            <div class="go-btn">샘플 보기 →</div>
+        `;
+        grid.appendChild(card);
+    });
 </script>
+
 </body>
 </html>
