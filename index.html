@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Quote Solutions - Showcase</title>
+    <link rel="stylesheet" as="style" crossorigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --bg: #050505; --card: #111111; --accent: #00ff88;
+            --text: #ffffff; --text-sub: #888888;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: "Pretendard", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+        
+        header { text-align: center; margin-bottom: 80px; }
+        header h1 { font-size: 50px; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; }
+        header p { color: var(--accent); font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* [GALLERY GRID] */
+        .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        
+        .project-card {
+            background: var(--card); border: 1px solid #222; border-radius: 30px;
+            padding: 40px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none; color: inherit; display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
+        }
+        .project-card:hover { 
+            transform: translateY(-15px); border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+        .project-card::after {
+            content: "TRY DEMO →"; position: absolute; bottom: 20px; right: 30px;
+            font-weight: 800; color: var(--accent); font-size: 14px; opacity: 0; transition: 0.3s;
+        }
+        .project-card:hover::after { opacity: 1; transform: translateX(-10px); }
+
+        .category { font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 15px; }
+        .title { font-size: 26px; font-weight: 800; margin-bottom: 15px; }
+        .desc { color: var(--text-sub); font-size: 16px; margin-bottom: 30px; }
+
+        /* [BANNER SECTION] */
+        .custom-banner {
+            margin-top: 100px; padding: 60px; border-radius: 40px;
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+            border: 1px dashed #444; text-align: center;
+        }
+        .custom-banner h2 { font-size: 32px; margin-bottom: 20px; }
+        .btn-contact {
+            display: inline-block; padding: 20px 50px; background: var(--accent);
+            color: #000; text-decoration: none; border-radius: 100px;
+            font-weight: 900; font-size: 18px; transition: 0.3s;
+        }
+        .btn-contact:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 136, 0.4); }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 36px; }
+            .custom-banner { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <p>Expert in Automated Quote Systems</p>
+        <h1>솔루션 쇼룸</h1>
+        <p style="color:#555; text-transform: none; margin-top:10px;">상담 시간을 90% 단축시키는 업종별 실시간 견적 엔진</p>
+    </header>
+
+    <div class="showcase-grid">
+        <a href="https://대표님아이디.github.io/logo-calc" class="project-card">
+            <span class="category">BRANDING</span>
+            <div class="title">로고 디자인 견적 엔진</div>
+            <div class="desc">복잡한 시안 개수, 저작권 옵션, 급행 할증을 한 번에 계산하고 신청까지 완료합니다.</div>
+        </a>
+
+        <a href="https://대표님아이디.github.io/copy-calc" class="project-card">
+            <span class="category">CONTENTS</span>
+            <div class="title">제품 카피라이팅 엔진</div>
+            <div class="desc">분량 위주가 아닌 소구점 분석, 타겟 리서치 등 전략 비용을 체계적으로 산출합니다.</div>
+        </a>
+
+        <a href="https://대표님아이디.github.io/product-calc" class="project-card">
+            <span class="category">MANUFACTURING</span>
+            <div class="title">시제품 제작 견적 엔진</div>
+            <div class="desc">재료, 부피, 수량별 할인 로직(Scale of Economy)이 적용된 고도화된 계산기입니다.</div>
+        </a>
+    </div>
+
+    <div class="custom-banner">
+        <p style="color:var(--accent); margin-bottom:10px;">원하는 로직이 없으신가요?</p>
+        <h2>"대표님 비즈니스에 딱 맞는<br>맞춤형 엔진을 설계해 드립니다."</h2>
+        <p style="color:var(--text-sub); margin-bottom:30px;">엑셀 수식만 주시면 웹사이트로 구현해 드립니다. 인건비 90%를 아끼세요.</p>
+        <a href="https://open.kakao.com/대표님톡" class="btn-contact">1:1 맞춤 제작 문의하기</a>
+    </div>
+</div>
+
+<script>
+    // 간단한 마우스 효과 등 추가 가능
+</script>
+</body>
+</html>
