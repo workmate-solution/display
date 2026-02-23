@@ -23,7 +23,9 @@
         header { text-align: center; margin-bottom: 100px; }
         header h1 { 
             font-size: 4rem; font-weight: 900; margin: 0;
-            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background: var(--gradient); -webkit-background-clip: text; /* 구형 브라우저용 */
+background-clip: text;         /* 표준 속성 (이걸 추가하세요!) */
+-webkit-text-fill-color: transparent;
         }
         header p { color: #ffd1d1; letter-spacing: 5px; margin-top: 10px; font-weight: 700; }
 
@@ -66,6 +68,14 @@
             display: flex; align-items: center; gap: 10px; opacity: 0; transition: 0.3s;
         }
         .style-card:hover .go-btn { opacity: 1; transform: translateX(10px); }
+
+        /* 안내 배너 스타일 */
+        .info-banner {
+            max-width: 900px; margin: 0 auto 60px auto; padding: 25px;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid #333; border-radius: 16px;
+            text-align: center; color: #ccc; font-size: 1.05rem; line-height: 1.7;
+        }
+        .info-banner strong { color: var(--accent); font-weight: 700; }
     </style>
 </head>
 <body>
@@ -73,8 +83,14 @@
 <div class="container">
     <header>
         <h1>자동견적비서 디자인 아카이브</h1>
-        <p>WM 솔루션 프리미엄 전시관</p>
+        <p>워크메이트 솔루션 프리미엄 전시관</p>
     </header>
+
+    <div class="info-banner">
+        로고제작업종 견적서 샘플디자인입니다.<br>
+        <strong>업종(인테리어, 영상제작, 레슨, 렌탈 등)과 계산 방식에 맞춰 100% 맞춤 제작</strong>해 드립니다.<br>
+        모든 디자인은 커스텀 가능합니다. 로고, 컬러, 계산 로직까지 비즈니스에 맞춰 변경해 드립니다.
+    </div>
 
     <div class="gallery-grid" id="grid">
         </div>
@@ -133,7 +149,3 @@
 
 </body>
 </html>
-
-
-
-
